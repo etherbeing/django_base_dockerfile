@@ -13,6 +13,7 @@ docker compose --env-file ./.env --file deploy/docker-compose.yml --project-name
 NAME=Your project name
 DJANGO_SUPERUSER_PASSWORD=mysecurepassword
 USERNAME=mysecureusername
+EMAIL=myemail@email.com
 STATICFILES_PATH=/app/static/
 MEDIA_PATH=/app/media/
 ```
