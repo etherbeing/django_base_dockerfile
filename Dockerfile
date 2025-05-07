@@ -22,4 +22,4 @@ RUN yes yes | python manage.py collectstatic
 
 RUN python manage.py compilemessages
 
-ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
