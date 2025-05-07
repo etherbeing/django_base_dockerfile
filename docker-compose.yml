@@ -3,6 +3,6 @@ services:
     image: ${NAME:-django-deploy}:${TAG:-latest}
     build:
       context: ..
-      dockerfile: ./deploy/
+      dockerfile: ./deploy/Dockerfile
     ports:
       - 8000:8000
