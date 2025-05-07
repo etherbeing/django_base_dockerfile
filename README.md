@@ -5,5 +5,5 @@ This repo aims to create a base for most common django projects to be deployed t
 ## Usage
 ```sh
 git clone --depth=1 https://github.com/etherbeing/django_base_docker_deployment ./deploy
-docker compose --file
+docker-compose --file deploy/docker-compose.yml up -d 
 ```

@@ -1,5 +1,5 @@
 services:
-  image: ${NAME: django-deploy}:${TAG: latest}
+  image: ${NAME:django-deploy}:${TAG:latest}
   build:
     context: ..
     dockerfile: ./deploy/
