@@ -4,6 +4,10 @@ FROM python:3-alpine
 # Install a WSGI server to serve our files, later this should also include daphne to serve ASGI in case is needed with a conditional script based on a build argument
 RUN pip install gunicorn
 
+COPY ./deploy/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
 COPY ./ /app/
 
 # This is at this place to make this instruction not to invalid the previous one 
@@ -17,7 +21,6 @@ RUN pip install -r ${REQUIREMENTS_BASE_FOLDER}/requirements.txt
 
 RUN yes yes | python manage.py collectstatic
 
-ENTRYPOINT \
-    "sh -c\ 
-    python manage.py migrate &&\
-    gunicorn --access-logfile /var/log/app/logfile $(ls */wsgi.py | cut -d / -f 1).wsgi:application --bind :8000"
+RUN python manage.py compilemessages
+
+ENTRYPOINT ["sh", "-c", "deploy/entrypoint.sh"]
