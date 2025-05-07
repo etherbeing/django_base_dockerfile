@@ -1,7 +1,8 @@
 services:
-  image: ${NAME:django-deploy}:${TAG:latest}
-  build:
-    context: ..
-    dockerfile: ./deploy/
-  ports:
-    - 8000:8000
+  django_app:
+    image: ${NAME:-django-deploy}:${TAG:-latest}
+    build:
+      context: ..
+      dockerfile: ./deploy/
+    ports:
+      - 8000:8000
