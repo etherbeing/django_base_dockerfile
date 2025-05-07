@@ -16,3 +16,14 @@ USERNAME=mysecureusername
 STATICFILES_PATH=/app/static/
 MEDIA_PATH=/app/media/
 ```
+## Reading Logs
+
+```bash
+docker compose --env-file=./.env --file=deploy/docker-compose.yml --project-name yourprojectname logs -f
+```
+
+## Opening a Shell
+
+```bash
+docker compose --env-file=./.env --file=deploy/docker-compose.yml --project-name yourprojectname exec -it django_app ash
+```
