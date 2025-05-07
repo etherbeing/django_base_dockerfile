@@ -12,13 +12,12 @@ COPY ./ /app/
 
 # This is at this place to make this instruction not to invalid the previous one 
 ARG REQUIREMENTS_BASE_FOLDER=.
+ARG STATICFILES_PATH=/app/static/
 
 WORKDIR /app/
 
 # Install your requirements from a requirements.txt file (support for poetry, pipenv should also be included at some point)
 RUN pip install -r ${REQUIREMENTS_BASE_FOLDER}/requirements.txt
-
-RUN yes yes | python manage.py collectstatic
 
 RUN python manage.py compilemessages
 
