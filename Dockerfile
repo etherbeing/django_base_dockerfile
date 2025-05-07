@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-
+RUN apt install -y gettext
 # Install a WSGI server to serve our files, later this should also include daphne to serve ASGI in case is needed with a conditional script based on a build argument
 RUN pip install gunicorn
 
@@ -17,7 +17,6 @@ WORKDIR /app/
 
 # Install your requirements from a requirements.txt file (support for poetry, pipenv should also be included at some point)
 RUN pip install -r ${REQUIREMENTS_BASE_FOLDER}/requirements.txt
-
 
 RUN yes yes | python manage.py collectstatic
 
