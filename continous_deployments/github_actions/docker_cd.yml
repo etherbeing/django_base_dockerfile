@@ -1,0 +1,33 @@
+name: Docker Compose CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-compose:
+    name: Run Docker Compose
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and run containers
+        run: |
+          NAME=${{ github.repository }} docker compose --env-file ./.env --file deploy/docker-compose.yml --project-name=${{ github.repository }} up -d --build 
+
+      #- name: Wait for services to be healthy
+      #  run: |
+      #    docker compose ps
+      #    # Optional: add your own logic to wait for service health
+
+      #- name: Run tests inside container
+      #  run: |
+      #    docker compose exec -T <service_name> sh -c "your-test-command"
+#
+      #- name: Tear down containers
+      #  if: always()
+      #  run: |
+      #    docker compose down --volumes
