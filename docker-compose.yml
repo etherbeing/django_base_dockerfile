@@ -1,9 +1,11 @@
 services:
-  django_app:
+  django:
+    profiles: 
+      - django
     image: ${NAME:-django-deploy}:${TAG:-latest}
     build:
-      context: ..
-      dockerfile: ./deploy/Dockerfile
+      context: ${BACKEND_SRC:-..}
+      dockerfile: ${BACKEND_SRC:-..}/Dockerfile
     volumes:
       - /var/www/${NAME:-django-deploy}/static/:${STATICFILES_PATH:-/app/static/}
       - /var/www/${NAME:-django-deploy}/media/:${MEDIA_PATH:-/app/media/}
@@ -20,6 +22,14 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - db:/var/lib/postgresql/data
-
+  dotnet_frontend:
+    profiles: 
+      - dotnet_frontend
+    image: ${NAME:-dotnet-deploy}:${TAG:-latest}
+    build:
+      context: ${FRONTEND_SRC:-..}
+      dockerfile: ${FRONTEND_SRC:-..}Dockerfile
+    depends_on:
+      - ${BACKEND_PROFILE:-django}
 volumes:
   db:

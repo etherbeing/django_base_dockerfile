@@ -4,7 +4,7 @@ RUN apk add gettext
 # Install a WSGI server to serve our files, later this should also include daphne to serve ASGI in case is needed with a conditional script based on a build argument
 RUN pip install gunicorn
 
-COPY ./deploy/entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
