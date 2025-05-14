@@ -1,5 +1,7 @@
 FROM python:3-alpine
 
+ENV NO_I18N=False
+
 RUN apk add gettext
 # Install a WSGI server to serve our files, later this should also include daphne to serve ASGI in case is needed with a conditional script based on a build argument
 RUN pip install gunicorn
@@ -19,6 +21,6 @@ WORKDIR /app/
 # Install your requirements from a requirements.txt file (support for poetry, pipenv should also be included at some point)
 RUN pip install -r ${REQUIREMENTS_BASE_FOLDER}/requirements.txt
 
-RUN python manage.py compilemessages
+RUN [ -z "$NO_I18N" ] || [ "$NO_I18N" = "False" ] && python manage.py compilemessages
 
 ENTRYPOINT ["/entrypoint.sh"]
