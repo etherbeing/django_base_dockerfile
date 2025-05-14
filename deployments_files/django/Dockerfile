@@ -4,7 +4,7 @@ ENV NO_I18N=False
 
 RUN apk add gettext
 # Install a WSGI server to serve our files, later this should also include daphne to serve ASGI in case is needed with a conditional script based on a build argument
-RUN pip install gunicorn
+RUN [ -z "$USE_DAPHNE" ] || [ "$USE_DAPHNE" = "True" ] && pip install daphne || pip install gunicorn
 
 COPY ./entrypoint.sh /entrypoint.sh
 
