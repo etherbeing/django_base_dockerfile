@@ -21,7 +21,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /publish/wwwroot /usr/share/nginx/html
 
 # Optional: Custom nginx.conf to disable caching etc.
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
