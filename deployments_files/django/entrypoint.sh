@@ -3,7 +3,6 @@ MAIN_APP=$(find . -name wsgi.py | head -n1 | cut -d/ -f2)
 # Check if setup has already been done
 if [ ! -f .setup_done ]; then
   echo "Setup already done. Skipping..."
-  exit 0
 else
 # Comma-separated list of fixture files
 # Convert comma-separated list to space-separated
