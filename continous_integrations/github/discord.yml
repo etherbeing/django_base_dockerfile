@@ -17,10 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@master
       - name: Send Discord notification
         uses: appleboy/discord-action@v1.2.0
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
           message: |
             ✅ **GitHub Event Notification**
 
