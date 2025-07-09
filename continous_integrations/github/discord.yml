@@ -18,9 +18,9 @@ jobs:
 
     steps:
       - name: Send Discord notification
-        uses: cl8dep/action-discord@v0.1
+        uses: appleboy/discord-action@v1.2.0
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           message: |
             ✅ **GitHub Event Notification**
 
